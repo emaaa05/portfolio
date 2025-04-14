@@ -59,6 +59,7 @@
   grid-template-columns: repeat(4, 1fr); 
   gap: 0.5rem;
   margin-top: 4rem;
+  margin-right: 2rem;
   justify-items: center; 
 }
 
@@ -122,6 +123,16 @@
   .about-paragraph{
     margin-right: 10rem;
   }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 0.5rem;
+    margin-top: 4rem;
+    margin-right: 1rem;
+    justify-items: center; 
+  }
+  
 
 }
 
