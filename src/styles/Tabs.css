@@ -1,88 +1,106 @@
+.tabs-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  background-color: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  color: white;
+}
+
+.tabs-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.tabs-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  position: relative;
+  z-index: 1002;
+}
+
 .hamburger-icon {
   display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 24px;
-  height: 20px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  z-index: 2001;
-  position: fixed;
-  top: 20px;
-  left: 20px;
 }
 
 .hamburger-icon span {
+  width: 25px;
   height: 3px;
-  width: 100%;
   background-color: white;
-  border-radius: 2px;
-  transition: all 0.4s ease-in-out;
-}
-
-.hamburger-icon.open span:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-
-.hamburger-icon.open span:nth-child(2) {
-  opacity: 0;
-}
-
-.hamburger-icon.open span:nth-child(3) {
-  transform: rotate(-45deg) translate(5px, -5px);
+  display: block;
+  margin: 4px 0;
+  transition: all 0.3s ease;
 }
 
 .side-menu {
-  position: fixed;
-  top: 0;
-  left: -250px;
-  height: 100vh;
-  width: 250px;
-  background-color: #111;
-  padding-top: 60px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: left 0.3s ease;
-  z-index: 2000;
+  display: none;
 }
 
-.side-menu.active {
-  left: 0;
+.tabs-desktop-menu {
+  display: flex;
+  gap: 1.5rem;
 }
 
 .tab-button {
   background: none;
   border: none;
   color: white;
-  font-size: 1.2rem;
-  padding: 15px 20px;
-  width: 100%;
-  text-align: left;
-  transition: background 0.2s;
-}
-
-.tab-button:hover {
-  background: rgba(255, 255, 255, 0.1);
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
 }
 
 .tab-button.active {
-  background: rgba(255, 255, 255, 0.2);
+  border-bottom: 2px solid #00d1ff;
 }
 
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  z-index: 1000;
+.tabs-content {
+  flex: 1;
+  padding: 2rem;
 }
 
 @media (max-width: 768px) {
   .hamburger-icon {
     display: flex;
+    flex-direction: column;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
+  }
+
+  .tabs-desktop-menu {
+    display: none;
+  }
+
+  .side-menu {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    height: 100%;
+    width: 200px;
+    background-color: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: left 0.3s ease-in-out;
+    z-index: 1000;
+  }
+
+  .side-menu.active {
+    left: 0;
+  }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: transparent
+    z-index: 999;
   }
 }

@@ -33,17 +33,32 @@ const Tabs = () => {
     <div className="tabs-wrapper">
       <div className="tabs-container">
         <nav className="tabs-nav">
-          <button
-            className={`hamburger-icon ${isMenuOpen ? 'open' : ''}`}
-            onClick={toggleMenu}
-            aria-label="Toggle menu"
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
+
+            {!isMenuOpen && (
+              <button
+                className="hamburger-icon"
+                onClick={toggleMenu}
+                aria-label="Toggle menu"
+              >
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
+            )}
 
           <div className={`side-menu ${isMenuOpen ? 'active' : ''}`}>
+            {['Home', 'About', 'Skills', 'Projects'].map(tab => (
+              <button
+                key={tab}
+                onClick={() => handleTabClick(tab)}
+                className={`tab-button ${activeTab === tab ? 'active' : ''}`}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
+
+          <div className="tabs-desktop-menu">
             {['Home', 'About', 'Skills', 'Projects'].map(tab => (
               <button
                 key={tab}

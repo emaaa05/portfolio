@@ -90,11 +90,19 @@
   color: #ffffff;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
   .about-section {
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
+  }
+
+  .about-title{
+    margin-right: 10rem;
+  }
+
+  .about-paragraph{
+    margin-right: 8rem;
   }
 
   .about-left {
