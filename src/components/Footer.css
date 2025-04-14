@@ -3,6 +3,7 @@
   padding: 3rem 1rem;
   color: white;
   margin-top: 4rem;
+  width: 100%; 
 }
 
 .footer .icon-link {
@@ -25,6 +26,21 @@
   letter-spacing: 1px;
 }
 
-.footer-foot{
+.footer-foot {
   margin-top: 1rem;
+}
+
+@media (max-width: 1024px) {
+  .footer {
+    padding: 2rem 1rem;
+    margin-top: 2rem;
+  }
+
+  .footer-title {
+    font-size: 4rem;
+  }
+
+  .footer .icon-link {
+    font-size: 3rem;
+  }
 }

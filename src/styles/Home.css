@@ -30,13 +30,13 @@
 }
 
 .about-left {
-  flex: 2; 
+  flex: 1; 
 }
 
 .about-right {
   flex: 1; 
   display: flex;
-  justify-content: flex-start; 
+  justify-content: center; 
 }
 
 .about-img {
@@ -50,13 +50,11 @@
 .about-title {
   font-size: 3.3rem !important;
   font-weight: bold;
-  margin-bottom: 1.5rem;
 }
 
 .about-text {
   font-size: 1.6rem;
   line-height: 1.8;
-  margin-left: 10rem;
   margin-bottom: 1rem;
 }
 
@@ -113,5 +111,146 @@
   to {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 768px) {
+  .home-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10rem;
+    padding: 2rem 1rem;
+    text-align: center;
+  }
+
+  .about-text {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    text-align: start;      
+    width: 100%;
+  }
+
+  .home-left,
+  .home-right,
+  .about-left,
+  .about-right {
+    flex: unset;
+    width: 50%; 
+  }
+
+  .profile-img,
+  .about-img {
+    width: 220px;
+    height: 220px;
+  }
+}
+
+@media (max-width: 767px) {
+  .home-section,
+  .about-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10rem;
+    padding: 2rem 1rem;
+    text-align: center;
+  }
+
+  .home-left,
+  .home-right,
+  .about-left,
+  .about-right {
+    flex: unset;
+    width: 100%;
+    margin-left: 0;         
+    padding: 0 1rem;        
+  }
+
+  .about-text {
+    font-size: 1.4rem;
+    margin-left: 0;
+  }
+
+  .about-title {
+    font-size: 2.4rem !important;
+  }
+
+  .greeting {
+    font-size: 1.6rem;
+  }
+
+  .name {
+    font-size: 2.8rem;
+  }
+
+  .role {
+    font-size: 1.6rem;
+  }
+
+  .intro-text {
+    font-size: 1rem;
+    margin-top: 1rem;
+  }
+
+  .profile-img,
+  .about-img {
+    width: 180px;
+    height: 180px;
+  }
+}
+
+@media (max-width: 650px) {
+  .home-section,
+  .about-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-right: 10rem;
+  }
+
+  .home-left,
+  .home-right,
+  .about-left,
+  .about-right {
+    flex: unset;
+    width: 100%;
+  }
+
+  .about-text {
+    font-size: 1.4rem;
+    margin-right: 5rem;
+  }
+
+  .about-title {
+    font-size: 2.4rem !important;
+    margin-right: 4rem;
+  }
+
+  .greeting {
+    font-size: 1.6rem;
+  }
+
+  .name {
+    font-size: 2.8rem;
+  }
+
+  .role {
+    font-size: 1.6rem;
+  }
+
+  .intro-text {
+    font-size: 1rem;
+    margin-top: 1rem;
+  }
+
+  .profile-img,
+  .about-img {
+    width: 180px;
+    height: 180px;
   }
 }

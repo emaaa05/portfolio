@@ -8,6 +8,7 @@ import '../styles/tabs.css';
 
 const Tabs = () => {
   const [activeTab, setActiveTab] = useState('Home');
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const renderTab = () => {
     switch (activeTab) {
@@ -19,19 +20,32 @@ const Tabs = () => {
     }
   };
 
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <div className="tabs-wrapper">
       <div className="tabs-container">
         <nav className="tabs-nav">
-          {['Home', 'About', 'Skills', 'Projects'].map(tab => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`tab-button ${activeTab === tab ? 'active' : ''}`}
-            >
-              {tab}
-            </button>
-          ))}
+          <button className="hamburger" onClick={toggleMenu}>
+            &#9776;
+          </button>
+
+          <div className={`menu ${isMenuOpen ? 'active' : ''}`}>
+            {['Home', 'About', 'Skills', 'Projects'].map(tab => (
+              <button
+                key={tab}
+                onClick={() => {
+                  setActiveTab(tab);
+                  setIsMenuOpen(false); 
+                }}
+                className={`tab-button ${activeTab === tab ? 'active' : ''}`}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
         </nav>
 
         <div className="tabs-content">
