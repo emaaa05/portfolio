@@ -105,3 +105,15 @@
     flex: 1;
   }
 }
+
+@media (max-width: 650px) {
+  .about-title{
+    margin-right: 10rem;
+  }
+
+  .about-paragraph{
+    margin-right: 10rem;
+  }
+
+}
+

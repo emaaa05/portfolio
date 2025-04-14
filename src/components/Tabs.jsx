@@ -4,7 +4,7 @@ import About from '../pages/About';
 import Projects from '../pages/Projects';
 import Footer from './Footer';
 import Skills from '../pages/Skills';
-import '../styles/tabs.css'; 
+import '../styles/tabs.css';
 
 const Tabs = () => {
   const [activeTab, setActiveTab] = useState('Home');
@@ -24,28 +24,38 @@ const Tabs = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const handleTabClick = (tab) => {
+    setActiveTab(tab);
+    setIsMenuOpen(false); 
+  };
+
   return (
     <div className="tabs-wrapper">
       <div className="tabs-container">
         <nav className="tabs-nav">
-          <button className="hamburger" onClick={toggleMenu}>
-            &#9776;
+          <button
+            className={`hamburger-icon ${isMenuOpen ? 'open' : ''}`}
+            onClick={toggleMenu}
+            aria-label="Toggle menu"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
           </button>
 
-          <div className={`menu ${isMenuOpen ? 'active' : ''}`}>
+          <div className={`side-menu ${isMenuOpen ? 'active' : ''}`}>
             {['Home', 'About', 'Skills', 'Projects'].map(tab => (
               <button
                 key={tab}
-                onClick={() => {
-                  setActiveTab(tab);
-                  setIsMenuOpen(false); 
-                }}
+                onClick={() => handleTabClick(tab)}
                 className={`tab-button ${activeTab === tab ? 'active' : ''}`}
               >
                 {tab}
               </button>
             ))}
           </div>
+
+          {isMenuOpen && <div className="overlay" onClick={toggleMenu}></div>}
         </nav>
 
         <div className="tabs-content">
