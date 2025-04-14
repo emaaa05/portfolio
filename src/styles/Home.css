@@ -1,0 +1,117 @@
+.home-section {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 10rem;
+  background: transparent;
+  color: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.home-left {
+  flex: 1;
+  animation: fadeInLeft 1s ease-in-out;
+}
+
+.home-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  animation: fadeInRight 1s ease-in-out;
+}
+
+.about-section {
+  margin-left: 10rem;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  color: #fff;
+}
+
+.about-left {
+  flex: 2; 
+}
+
+.about-right {
+  flex: 1; 
+  display: flex;
+  justify-content: flex-start; 
+}
+
+.about-img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.about-title {
+  font-size: 3.3rem !important;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.about-text {
+  font-size: 1.6rem;
+  line-height: 1.8;
+  margin-left: 10rem;
+  margin-bottom: 1rem;
+}
+
+.greeting {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #d1d1d1;
+}
+
+.name {
+  font-size: 3.5rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.role {
+  font-size: 2rem;
+  color: #b388ff;
+  margin: 1rem 0;
+}
+
+.intro-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #ccc;
+  margin-top: 1.5rem;
+}
+
+.profile-img {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #b388ff;
+  box-shadow: 0 0 30px rgba(179, 136, 255, 0.3);
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
