@@ -12,7 +12,7 @@ function Footer() {
         <a href="https://github.com/emaaa05" target="_blank" rel="noopener noreferrer" className="icon-link" title="GitHub">
           <FaGithub />
         </a>
-        <a href="https://www.linkedin.com/in/emanuelcorradini" target="_blank" rel="noopener noreferrer" className="icon-link" title="LinkedIn">
+        <a href="https://www.linkedin.com/in/emanuel-corradini-8bb435229" target="_blank" rel="noopener noreferrer" className="icon-link" title="LinkedIn">
           <FaLinkedin />
         </a>
         <p className='footer-foot'>
