@@ -17,7 +17,7 @@ const projects = [
   {
     title: "BCRA Connect",
     description:
-      "Internal app for a law firm to manage tasks and integrate BCRA data. Built with Python (Tkinter) and React for future versions.",
+      "Internal app for a law firm to manage tasks and integrate BCRA data. Built with Electron Js and React for future versions.",
     tech: ["Electron Js", "React"],
     images: [bcra],
     link: "Code is private for commercial reason",
