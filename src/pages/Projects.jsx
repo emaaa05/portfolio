@@ -1,10 +1,14 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import projects from '../data/projectsData';
+import FeaturedProject from '../components/FeaturedProject';
 import '../styles/projects.css';
 
 function Projects() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalImage, setModalImage] = useState(null);
+
+  const featured = useMemo(() => projects.find(p => p.featured), []);
+  const others = useMemo(() => projects.filter(p => !p.featured), []);
 
   const openModal = (img) => {
     setModalImage(img);
@@ -19,8 +23,11 @@ function Projects() {
   return (
     <section className="projects-section">
       <h2 className="projects-title">My Projects </h2>
+
+      <FeaturedProject project={featured} />
+
       <div className="projects-grid">
-        {projects.map((proj, index) => (
+        {others.map((proj, index) => (
           <div key={index} className="project-card">
             {proj.images && proj.images.length > 1 ? (
               proj.images.length === 2 ? (
@@ -73,9 +80,11 @@ function Projects() {
               <span className="project-private">{proj.link}</span>
             )}
 
-            <p className="project-tech">
-              Tech: {proj.tech.join(', ')}
-            </p>
+            <div className="tech-badges">
+              {proj.tech.map((t) => (
+                <span className="tech-badge" key={t}>{t}</span>
+              ))}
+            </div>
           </div>
         ))}
       </div>

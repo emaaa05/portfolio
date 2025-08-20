@@ -4,8 +4,58 @@ import ecommerce2 from '../assets/ecommerce2.jpg';
 import music1 from '../assets/music1.png';
 import clima1 from '../assets/clima1.png';
 import clima2 from '../assets/clima2.png';
+import dev from '../assets/dev.jpg';
+import videoappcollege from '../assets/videoappcollege.MP4';
 
 const projects = [
+  {
+    featured: true,
+    title: "College Connect USA",
+    tagline: "A campus mobile app for universities in the USA: enrollment, courses, notifications, and integrated payments",
+    description:
+      "I'm the co‑founder. Together with Blaine Oler, I co‑designed and co‑built the app end‑to‑end: auth, academic management, communication, and payments. Scalable architecture, code quality, and native‑first UX.",
+    role: "Co‑founder",
+    cofounder: "Blaine Oler",
+    tech: ["React Native", "Expo", "TypeScript", "Node.js", "Express", "Firebase", "Stripe"],
+    backend: "Node.js + Express + Firebase",
+    frontend: "React Native + Expo + React Query",
+    infrastructure: "Docker, Railway/VPS, CI/CD (GitHub Actions)",
+    payments: ["Stripe", "Card payments"],
+    images: [dev],
+    demoVideo: {
+      src: videoappcollege,
+      poster: dev,
+    },
+    contactEmail: "emacorradini.contacto@gmail.com",
+    storeLinks: [
+      // Example, uncomment when you have real links
+      // { label: 'App Store', href: 'https://apps.apple.com/...' },
+      // { label: 'Google Play', href: 'https://play.google.com/...' },
+    ],
+    caseStudy: {
+      overview:
+        "Goal: centralize students' and teachers' academic life in a single performant app with a simple UI. The stack enables fast iteration and scale.",
+      ownership: [
+        "Product ownership: roadmap, UX/UI decisions and strategy",
+        "Fullstack architecture and hands-on development",
+        "Infrastructure and continuous delivery",
+      ],
+      architecture: [
+        "Authentication with JWT + refresh tokens",
+        "Modular REST API with validation and versioning",
+        "Firebase (Firestore/RTDB) for academic domain models (students, subjects, enrollments, payments)",
+      ],
+      payments: [
+        "Stripe Checkout + Webhooks for payment confirmation",
+        "Secure key vault and idempotent error handling",
+      ],
+      roadmap: [
+        "Push notifications (Expo) segmented by role",
+        "Metrics and admin panel dashboards",
+        "Multi-tenant support",
+      ],
+    },
+  },
   {
     title: "Ecommerce",
     description:
