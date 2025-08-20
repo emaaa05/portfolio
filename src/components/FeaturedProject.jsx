@@ -38,6 +38,12 @@ function FeaturedProject({ project }) {
     }
   }, [project]);
 
+  const shouldEmbedVideo = useMemo(() => {
+    // If there is an external demo URL, prefer linking instead of embedding to keep the bundle light
+    if (project?.demoExternalUrl) return false;
+    return Boolean(project?.demoVideo?.src || autoVideoSrc);
+  }, [project, autoVideoSrc]);
+
   return (
     <section className="featured-project">
       <div className="featured-hero">
@@ -80,7 +86,7 @@ function FeaturedProject({ project }) {
         </div>
 
         <div className="featured-right">
-          {(project.demoVideo?.src || autoVideoSrc) ? (
+          {shouldEmbedVideo ? (
             <div className="featured-media">
               <video
                 className="featured-video"

@@ -5,7 +5,7 @@ import music1 from '../assets/music1.png';
 import clima1 from '../assets/clima1.png';
 import clima2 from '../assets/clima2.png';
 import dev from '../assets/dev.jpg';
-import videoappcollege from '../assets/videoappcollege.MP4';
+// If you prefer external demo links, you can omit the video import and set demoExternalUrl instead
 
 const projects = [
   {
@@ -22,10 +22,8 @@ const projects = [
     infrastructure: "Docker, Railway/VPS, CI/CD (GitHub Actions)",
     payments: ["Stripe", "Card payments"],
     images: [dev],
-    demoVideo: {
-      src: videoappcollege,
-      poster: dev,
-    },
+    // Prefer external link to keep the bundle light (OneDrive/YouTube/Vimeo)
+    demoExternalUrl: 'https://onedrive.live.com/?qt=allmyphotos&photosData=%2Fshare%2F1CE6ADE93FA26D88%21s339869e3ffac4c7c9cb75946df91231d%3Fithint%3Dvideo%26migratedtospo%3Dtrue&cid=1CE6ADE93FA26D88&id=1CE6ADE93FA26D88%21s339869e3ffac4c7c9cb75946df91231d&redeem=aHR0cHM6Ly8xZHJ2Lm1zL3YvYy8xY2U2YWRlOTNmYTI2ZDg4L0VlTnBtRE9zXzN4TW5MZFpSdC1SSXgwQmtuZ3N3YS1jME1uX2RTWldvY1BQSGc&v=photos',
     contactEmail: "emacorradini.contacto@gmail.com",
     storeLinks: [
       // Example, uncomment when you have real links
