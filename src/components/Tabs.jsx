@@ -4,7 +4,7 @@ import About from '../pages/About';
 import Projects from '../pages/Projects';
 import Footer from './Footer';
 import Skills from '../pages/Skills';
-import '../styles/tabs.css';
+import '../styles/Tabs.css';
 
 const Tabs = () => {
   const [activeTab, setActiveTab] = useState('Home');
@@ -33,18 +33,16 @@ const Tabs = () => {
     <div className="tabs-wrapper">
       <div className="tabs-container">
         <nav className="tabs-nav">
-
-            {!isMenuOpen && (
-              <button
-                className="hamburger-icon"
-                onClick={toggleMenu}
-                aria-label="Toggle menu"
-              >
-                <span></span>
-                <span></span>
-                <span></span>
-              </button>
-            )}
+          <button
+            className={`hamburger-icon ${isMenuOpen ? 'open' : ''}`}
+            onClick={toggleMenu}
+            aria-label="Toggle menu"
+            aria-expanded={isMenuOpen}
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
 
           <div className={`side-menu ${isMenuOpen ? 'active' : ''}`}>
             {['Home', 'About', 'Skills', 'Projects'].map(tab => (
