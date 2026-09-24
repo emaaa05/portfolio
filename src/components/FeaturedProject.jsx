@@ -5,10 +5,9 @@ function Badge({ children }) {
   return <span className="badge">{children}</span>;
 }
 
-function FeaturedProject({ project }) {
+function FeaturedProject({ project, language = 'es' }) {
   const [isCaseOpen, setIsCaseOpen] = useState(false);
-
-  if (!project) return null;
+  const isEnglish = language === 'en';
 
   // Autodetect video/poster from src/assets if not provided via dataset
   const { autoVideoSrc, autoPosterSrc } = useMemo(() => {
@@ -33,7 +32,7 @@ function FeaturedProject({ project }) {
         autoVideoSrc: videoMatch ? videoModules[videoMatch] : pickFirst(videoModules),
         autoPosterSrc: imageMatch ? imageModules[imageMatch] : undefined,
       };
-    } catch (_) {
+    } catch {
       return { autoVideoSrc: undefined, autoPosterSrc: undefined };
     }
   }, [project]);
@@ -44,17 +43,20 @@ function FeaturedProject({ project }) {
     return Boolean(project?.demoVideo?.src || autoVideoSrc);
   }, [project, autoVideoSrc]);
 
+  if (!project) return null;
+
   return (
     <section className="featured-project">
       <div className="featured-hero">
         <div className="featured-left">
+          <p className="featured-eyebrow">{isEnglish ? 'FEATURED CASE STUDY' : 'CASO DE ESTUDIO DESTACADO'}</p>
           <h2 className="featured-title">{project.title}</h2>
           <p className="featured-subtitle">{project.tagline}</p>
 
           <div className="badge-group">
             {project.role ? <Badge>{project.role}</Badge> : <Badge>Owner</Badge>}
             <Badge>Fullstack</Badge>
-            <Badge>Mobile (iOS/Android)</Badge>
+            <Badge>Backend + producto</Badge>
             {project.payments?.map((p) => (
               <Badge key={p}>Payments: {p}</Badge>
             ))}
@@ -73,11 +75,16 @@ function FeaturedProject({ project }) {
           </div>
 
           <div className="cta-group">
+            {project.demoExternalUrl && (
+              <a className="cta-button primary" href={project.demoExternalUrl} target="_blank" rel="noreferrer">
+                {isEnglish ? 'Watch demo' : 'Ver demo'}
+              </a>
+            )}
             {project.contactEmail && (
-              <a className="cta-button primary" href={`mailto:${project.contactEmail}?subject=Demo%20request%20-%20${encodeURIComponent(project.title)}`}>Request a demo</a>
+              <a className="cta-button" href={`mailto:${project.contactEmail}?subject=Demo%20request%20-%20${encodeURIComponent(project.title)}`}>{isEnglish ? 'Request a demo' : 'Solicitar demo'}</a>
             )}
             {project.caseStudy && (
-              <button className="cta-button" onClick={() => setIsCaseOpen(true)}>Read case study</button>
+              <button className="cta-button" onClick={() => setIsCaseOpen(true)}>{isEnglish ? 'Read case study' : 'Leer caso de estudio'}</button>
             )}
             {project.storeLinks?.map((s) => (
               <a key={s.href} className="cta-button ghost" href={s.href} target="_blank" rel="noreferrer">{s.label}</a>
@@ -110,38 +117,38 @@ function FeaturedProject({ project }) {
       {isCaseOpen && (
         <div className="modal" onClick={() => setIsCaseOpen(false)}>
           <div className="modal-content case-study" onClick={(e) => e.stopPropagation()}>
-            <h3 className="case-title">Case study: {project.title}</h3>
+            <h3 className="case-title">{isEnglish ? 'Case study:' : 'Caso de estudio:'} {project.title}</h3>
             <p className="case-paragraph">{project.caseStudy.overview}</p>
 
-            <h4>Ownership and responsibilities</h4>
+            <h4>{isEnglish ? 'Ownership and responsibilities' : 'Aporte y responsabilidades'}</h4>
             <ul className="case-list">
               {project.caseStudy.ownership.map((item, idx) => (
                 <li key={idx}>{item}</li>
               ))}
             </ul>
 
-            <h4>Architecture</h4>
+            <h4>{isEnglish ? 'Architecture' : 'Arquitectura'}</h4>
             <ul className="case-list">
               {project.caseStudy.architecture.map((item, idx) => (
                 <li key={idx}>{item}</li>
               ))}
             </ul>
 
-            <h4>Payments</h4>
+            <h4>{isEnglish ? 'Payments' : 'Pagos'}</h4>
             <ul className="case-list">
               {project.caseStudy.payments.map((item, idx) => (
                 <li key={idx}>{item}</li>
               ))}
             </ul>
 
-            <h4>Roadmap</h4>
+            <h4>{isEnglish ? 'Roadmap' : 'Próximos pasos'}</h4>
             <ul className="case-list">
               {project.caseStudy.roadmap.map((item, idx) => (
                 <li key={idx}>{item}</li>
               ))}
             </ul>
 
-            <button className="cta-button" onClick={() => setIsCaseOpen(false)}>Close</button>
+            <button className="cta-button" onClick={() => setIsCaseOpen(false)}>{isEnglish ? 'Close' : 'Cerrar'}</button>
           </div>
         </div>
       )}

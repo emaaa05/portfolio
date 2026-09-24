@@ -1,19 +1,22 @@
 import profile from '../assets/perfil.jpeg';
 import '../styles/about.css';
 
-function About() {
+function About({ language = 'es' }) {
+  const isEnglish = language === 'en';
+
   return (
     <>
       <section className="about-section">
         <div className="about-left">
-          <h2 className="about-title">ABOUT ME</h2>
+          <p className="section-kicker">{isEnglish ? 'BACKGROUND' : 'TRAYECTORIA'}</p>
+          <h2 className="about-title">{isEnglish ? 'Learning by building.' : 'Aprender haciendo.'}</h2>
 
           <p className="about-paragraph">
-            Hi! I'm a <strong>Front-End Developer</strong> focused on building beautiful and intuitive <strong>mobile apps</strong> using <strong>React Native</strong> 🚀.
+            {isEnglish ? <>I am studying <strong>Programming</strong> at the <strong>National Technological University</strong>. I am training as a <strong>fullstack</strong> developer, especially interested in building complete and maintainable systems.</> : <>Soy estudiante de la <strong>Tecnicatura Universitaria en Programación</strong> en la <strong>Universidad Tecnológica Nacional</strong>. Me estoy formando como desarrollador <strong>fullstack</strong>, con especial interés en construir sistemas completos y mantenibles.</>}
           </p>
 
           <p className="about-paragraph">
-            I enjoy transforming ideas into real, usable apps. I'm always learning, experimenting, and improving my skills to create better user experiences.
+            {isEnglish ? 'I learn by building: every project is an opportunity to research, test a solution and leave it better documented than I found it.' : 'Aprendo construyendo: cada proyecto es una oportunidad para investigar, probar una solución y dejarla mejor documentada que como la encontré.'}
           </p>
         </div>
 
@@ -25,21 +28,39 @@ function About() {
       <section className="about-grid-section">
         <div className="about-grid">
           <div className="about-item">
-            <h4> Location</h4>
-            <p>Argentina</p>
+            <h4>{isEnglish ? 'Based in' : 'Base'}</h4>
+            <p>Argentina · UTN</p>
           </div>
           <div className="about-item">
-            <h4>Tech I Use</h4>
-            <p>React Native, React Js, Expo</p>
+            <h4>{isEnglish ? 'Focus' : 'Enfoque'}</h4>
+            <p>{isEnglish ? 'Fullstack with backend depth' : 'Fullstack con base backend'}</p>
           </div>
           <div className="about-item">
-            <h4>Currently Learning</h4>
-            <p>React Navigation, Context API, UI libraries</p>
+            <h4>{isEnglish ? 'Currently learning' : 'Ahora estudio'}</h4>
+            <p>{isEnglish ? 'Architecture, data and systems' : 'Arquitectura, datos y sistemas'}</p>
           </div>
           <div className="about-item">
-            <h4>Goals</h4>
-            <p>Work remotely, build full apps, join a dev team</p>
+            <h4>{isEnglish ? 'Next step' : 'Próximo paso'}</h4>
+            <p>{isEnglish ? 'Building with teams that share knowledge' : 'Construir en equipos que compartan conocimiento'}</p>
           </div>
+        </div>
+      </section>
+
+      <section className="workflow-section">
+        <p className="section-kicker">{isEnglish ? 'WORKFLOW' : 'FORMA DE TRABAJO'}</p>
+        <h2 className="about-title">{isEnglish ? 'From the problem to the product.' : 'Del problema al producto.'}</h2>
+        <div className="workflow-grid">
+          {[
+            { es: 'Entender', en: 'Understand', textEs: 'Definir qué problema se quiere resolver y para quién.', textEn: 'Define the problem and who the product is for.' },
+            { es: 'Diseñar', en: 'Design', textEs: 'Ordenar el dominio, los flujos y la estructura del sistema.', textEn: 'Shape the domain, flows and system structure.' },
+            { es: 'Construir', en: 'Build', textEs: 'Conectar API, datos e interfaz en una solución mantenible.', textEn: 'Connect API, data and interface in a maintainable solution.' },
+            { es: 'Mejorar', en: 'Improve', textEs: 'Probar, documentar y aprender de lo que se construyó.', textEn: 'Test, document and learn from what was built.' },
+          ].map((step) => (
+            <article className="workflow-step" key={step.es}>
+              <h3>{isEnglish ? step.en : step.es}</h3>
+              <p>{isEnglish ? step.textEn : step.textEs}</p>
+            </article>
+          ))}
         </div>
       </section>
     </>

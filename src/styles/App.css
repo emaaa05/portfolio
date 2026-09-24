@@ -8,11 +8,13 @@ html, body, #root {
   overflow-x: hidden; 
   height: 100%;
   width: 100%;
-  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  background-color: #f4f0e8;
+  background-image: linear-gradient(rgba(16, 42, 67, .035) 1px, transparent 1px), linear-gradient(90deg, rgba(16, 42, 67, .035) 1px, transparent 1px);
+  background-size: 32px 32px;
   background-attachment: fixed;
   scroll-behavior: smooth;
-  color: white;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #102a43;
+  font-family: 'Trebuchet MS', 'Segoe UI', sans-serif;
 }
 
 a {
@@ -37,7 +39,7 @@ section {
 @media (max-width: 1024px) {
   html, body, #root {
     overflow-x: hidden;
-    font-size: 10px;
+    font-size: 14px;
     padding: 0;
     margin: 0;
   }
@@ -55,7 +57,7 @@ section {
 @media (max-width: 768px) {
   html, body, #root {
     overflow-x: hidden; 
-    font-size: 10px;
+    font-size: 14px;
     padding: 0;
     margin: 0;
   }

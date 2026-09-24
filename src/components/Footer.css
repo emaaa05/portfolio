@@ -1,9 +1,10 @@
 .footer {
   text-align: center;
-  padding: 3rem 1rem;
-  color: white;
+  padding: 4rem 1rem 2rem;
+  color: #102a43;
   margin-top: 4rem;
   width: 100%; 
+  border-top: 1px solid #c4d3da;
 }
 
 .footer .icon-link {
@@ -23,11 +24,23 @@
   font-size: 2.5rem;
   margin-bottom: 1.5rem;
   font-weight: bold;
-  letter-spacing: 1px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
 }
+
+.footer-intro {
+  max-width: 520px;
+  margin: 0 auto 1.25rem;
+  color: #38566b;
+  line-height: 1.5;
+}
+
+.footer-links { display: flex; justify-content: center; gap: 2rem; }
 
 .footer-foot {
   margin-top: 1rem;
+  color: #527184;
+  font-size: .85rem;
 }
 
 @media (max-width: 1024px) {
@@ -36,11 +49,13 @@
     margin-top: 2rem;
   }
 
-  .footer-title {
-    font-size: 4rem;
-  }
+  .footer-title { font-size: 2.5rem; }
 
   .footer .icon-link {
     font-size: 3rem;
   }
+}
+
+@media (max-width: 480px) {
+  .footer-links { gap: 1.25rem; }
 }

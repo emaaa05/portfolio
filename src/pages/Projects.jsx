@@ -1,14 +1,30 @@
 import { useMemo, useState } from 'react';
 import projects from '../data/projectsData';
-import FeaturedProject from '../components/FeaturedProject';
 import '../styles/projects.css';
 
-function Projects() {
+const projectOrder = ['TurnoYA', 'College Connect USA', 'BCRA Connect', 'React Native Music Player', 'React Native Weather App', 'Ecommerce'];
+
+function Projects({ language = 'es' }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalImage, setModalImage] = useState(null);
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [activeFilter, setActiveFilter] = useState('all');
 
-  const featured = useMemo(() => projects.find(p => p.featured), []);
-  const others = useMemo(() => projects.filter(p => !p.featured), []);
+  const orderedProjects = useMemo(
+    () => [...projects].sort((first, second) => projectOrder.indexOf(first.title) - projectOrder.indexOf(second.title)),
+    []
+  );
+  const filteredProjects = useMemo(
+    () => activeFilter === 'all' ? orderedProjects : orderedProjects.filter(project => project.category === activeFilter),
+    [activeFilter, orderedProjects]
+  );
+
+  const filters = [
+    { key: 'all', es: 'Todos', en: 'All' },
+    { key: 'fullstack', es: 'Fullstack', en: 'Fullstack' },
+    { key: 'mobile', es: 'Mobile', en: 'Mobile' },
+    { key: 'desktop', es: 'Desktop', en: 'Desktop' },
+  ];
 
   const openModal = (img) => {
     setModalImage(img);
@@ -20,14 +36,30 @@ function Projects() {
     setModalImage(null);
   };
 
+  const openCaseStudy = (project) => setSelectedProject(project);
+
   return (
     <section className="projects-section">
-      <h2 className="projects-title">My Projects </h2>
+      <p className="section-kicker">{language === 'en' ? 'LAB' : 'LABORATORIO'}</p>
+      <h2 className="projects-title">{language === 'en' ? 'Projects with a story to tell.' : 'Proyectos con algo para contar.'}</h2>
 
-      <FeaturedProject project={featured} />
+      <div className="projects-toolbar">
+        <div className="project-filters" role="group" aria-label={language === 'en' ? 'Filter projects' : 'Filtrar proyectos'}>
+          {filters.map(filter => (
+            <button
+              key={filter.key}
+              className={`filter-button ${activeFilter === filter.key ? 'active' : ''}`}
+              onClick={() => setActiveFilter(filter.key)}
+            >
+              {language === 'en' ? filter.en : filter.es}
+            </button>
+          ))}
+        </div>
+        <span className="project-count">{filteredProjects.length} {language === 'en' ? 'projects' : 'proyectos'}</span>
+      </div>
 
       <div className="projects-grid">
-        {others.map((proj, index) => (
+        {filteredProjects.map((proj, index) => (
           <div key={index} className="project-card">
             {proj.images && proj.images.length > 1 ? (
               proj.images.length === 2 ? (
@@ -65,19 +97,23 @@ function Projects() {
             )}
 
             <h3 className="project-title">{proj.title}</h3>
-            <p className="project-description">{proj.description}</p>
+            <p className="project-description">{language === 'en' && proj.descriptionEn ? proj.descriptionEn : proj.description}</p>
 
-            {proj.link.startsWith("http") ? (
+            {proj.link?.startsWith("http") ? (
               <a
                 href={proj.link}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="project-link"
               >
-                View on GitHub
+                {language === 'en' ? 'View on GitHub' : 'Ver en GitHub'}
+              </a>
+            ) : proj.demoExternalUrl ? (
+              <a href={proj.demoExternalUrl} target="_blank" rel="noreferrer" className="project-link">
+                {language === 'en' ? 'View demo' : 'Ver demo'}
               </a>
             ) : (
-              <span className="project-private">{proj.link}</span>
+              <span className="project-private">{language === 'en' ? 'Private project' : 'Proyecto privado'}</span>
             )}
 
             <div className="tech-badges">
@@ -85,6 +121,12 @@ function Projects() {
                 <span className="tech-badge" key={t}>{t}</span>
               ))}
             </div>
+
+            {proj.caseStudy && (
+              <button className="project-details-button" onClick={() => openCaseStudy(proj)}>
+                {language === 'en' ? 'Read project details' : 'Ver detalles del proyecto'}
+              </button>
+            )}
           </div>
         ))}
       </div>
@@ -93,6 +135,25 @@ function Projects() {
         <div className="modal" onClick={closeModal}>
           <div className="modal-content">
             <img src={modalImage} alt="Project" className="modal-image" />
+          </div>
+        </div>
+      )}
+
+      {selectedProject && (
+        <div className="modal" onClick={() => setSelectedProject(null)}>
+          <div className="modal-content case-study project-case-study" onClick={(event) => event.stopPropagation()}>
+            <p className="featured-eyebrow">{language === 'en' ? 'PROJECT NOTES' : 'NOTAS DEL PROYECTO'}</p>
+            <h3 className="case-title">{selectedProject.title}</h3>
+            <p className="case-paragraph">
+              {language === 'en' && selectedProject.descriptionEn ? selectedProject.descriptionEn : selectedProject.caseStudy.overview}
+            </p>
+            <h4>{language === 'en' ? 'Architecture' : 'Arquitectura'}</h4>
+            <ul className="case-list">
+              {selectedProject.caseStudy.architecture.map((item) => <li key={item}>{item}</li>)}
+            </ul>
+            <button className="cta-button" onClick={() => setSelectedProject(null)}>
+              {language === 'en' ? 'Close' : 'Cerrar'}
+            </button>
           </div>
         </div>
       )}

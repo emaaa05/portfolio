@@ -1,8 +1,8 @@
 .tabs-wrapper {
   width: 100%;
   min-height: 100vh;
-  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-  color: white;
+  background: #f4f0e8;
+  color: #102a43;
 }
 
 .tabs-container {
@@ -15,11 +15,16 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem;
-  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  padding: 1.1rem clamp(1rem, 5vw, 5rem);
+  background: #102a43;
+  border-bottom: 5px solid #e7b84b;
   position: relative;
   z-index: 1002;
 }
+
+.brand-lockup { display: flex; align-items: center; gap: .8rem; }
+.brand-mark { color: #102a43; background: #e7b84b; padding: .35rem .55rem; font-weight: 900; letter-spacing: .08em; }
+.brand-copy { color: #f4f0e8; font-size: .72rem; letter-spacing: .16em; font-weight: 700; }
 
 .hamburger-icon {
   display: none;
@@ -58,15 +63,32 @@
 .tab-button {
   background: none;
   border: none;
-  color: white;
+  color: #dce8ef;
   font-size: 1rem;
   cursor: pointer;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem .75rem;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  font-size: .78rem;
+  font-weight: 700;
 }
 
 .tab-button.active {
-  border-bottom: 2px solid #00d1ff;
+  color: #e7b84b;
+  border-bottom: 2px solid #e7b84b;
 }
+
+.language-toggle {
+  border: 1px solid #527184;
+  background: transparent;
+  color: #dce8ef;
+  padding: .4rem .55rem;
+  font-size: .7rem;
+  letter-spacing: .08em;
+  cursor: pointer;
+}
+
+.language-toggle .selected { color: #e7b84b; font-weight: 900; }
 
 .tabs-content {
   flex: 1;
@@ -74,6 +96,18 @@
 }
 
 @media (max-width: 768px) {
+  .tabs-nav {
+    min-height: 64px;
+    padding: .85rem 1rem .85rem 4.2rem;
+  }
+
+  .brand-copy {
+    font-size: .62rem;
+    letter-spacing: .1em;
+  }
+
+  .language-toggle { margin-left: auto; }
+
   .hamburger-icon {
     display: flex;
     flex-direction: column;
@@ -96,8 +130,8 @@
     left: -250px;
     height: 100%;
     width: 200px;
-    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-    padding: 2rem 1rem;
+    background: #102a43;
+    padding: 5rem 1.25rem 2rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -109,6 +143,8 @@
     left: 0;
   }
 
+  .brand-lockup { margin-left: 3rem; }
+
   .overlay {
     position: fixed;
     top: 0;
@@ -118,4 +154,6 @@
     background: rgba(0, 0, 0, 0.3);
     z-index: 1001;
   }
+
+  .tabs-content { padding: .75rem; }
 }

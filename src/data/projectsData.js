@@ -5,11 +5,12 @@ import music1 from '../assets/music1.png';
 import clima1 from '../assets/clima1.png';
 import clima2 from '../assets/clima2.png';
 import dev from '../assets/dev.jpg';
-// If you prefer external demo links, you can omit the video import and set demoExternalUrl instead
+import turnoya from '../assets/turnoya.jpg';
+// If you prefer external demo links, you can omit the video import and set demoExternalUrl instead.
 
 const projects = [
   {
-    featured: true,
+    category: "fullstack",
     title: "College Connect USA",
     tagline: "A campus mobile app for universities in the USA: enrollment, courses, notifications, and integrated payments",
     description:
@@ -55,7 +56,28 @@ const projects = [
     },
   },
   {
+    title: "TurnoYA",
+    category: "fullstack",
+    description:
+      "Aplicación fullstack para gestionar turnos de servicios profesionales. Incluye una API desarrollada con ASP.NET Core y una interfaz web construida con React y Vite.",
+    descriptionEn:
+      "A fullstack application for managing appointments for professional services. It includes an ASP.NET Core API and a web interface built with React and Vite.",
+    tech: ["C#", ".NET 10", "ASP.NET Core", "React", "Vite"],
+    images: [turnoya],
+    link: "https://github.com/emaaa05/TurnoYA",
+    caseStudy: {
+      overview:
+        "TurnoYA es una agenda de turnos para servicios profesionales. El proyecto conecta una interfaz web en React y Vite con una API desarrollada en ASP.NET Core sobre .NET 10.",
+      architecture: [
+        "Frontend web construido con React y Vite",
+        "API REST desarrollada con ASP.NET Core y C#",
+        "Persistencia en memoria para mantener la demo simple y fácil de ejecutar",
+      ],
+    },
+  },
+  {
     title: "Ecommerce",
+    category: "mobile",
     description:
       "A mobile e-commerce app built with React Native + Expo. Includes a product catalog, cart system, and a clean, responsive UI. Focused on replicating a real-world shopping experience with plans to expand functionality.",
     tech: ["React Native", "Expo", "React Navigation"],
@@ -64,6 +86,7 @@ const projects = [
   },
   {
     title: "BCRA Connect",
+    category: "desktop",
     description:
       "Internal app for a law firm to manage tasks and integrate BCRA data. Built with Electron Js and React for future versions.",
     tech: ["Electron Js", "React"],
@@ -72,6 +95,7 @@ const projects = [
   },
   {
     title: "React Native Music Player",
+    category: "mobile",
     description:
       "A React Native music player using Expo AV. Features album art, background playback and navigation through songs.",
     tech: ["React Native", "Expo AV", "JavaScript"],
@@ -80,6 +104,7 @@ const projects = [
   },
   {
     title: "React Native Weather App",
+    category: "mobile",
     description:
       "A clean weather app made with React Native and Expo. Automatically fetches user location and displays weather with custom UI.",
     tech: ["React Native", "Expo", "Weather API"],

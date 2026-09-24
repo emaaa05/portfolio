@@ -7,16 +7,30 @@ import Skills from '../pages/Skills';
 import '../styles/Tabs.css';
 
 const Tabs = () => {
-  const [activeTab, setActiveTab] = useState('Home');
+  const [activeTab, setActiveTab] = useState('Inicio');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [language, setLanguage] = useState('es');
+
+  const labels = language === 'es'
+    ? ['Inicio', 'Sobre mí', 'Tecnologías', 'Proyectos']
+    : ['Home', 'About', 'Skills', 'Projects'];
+
+  const toggleLanguage = () => {
+    const translations = {
+      'Inicio': 'Home', 'Sobre mí': 'About', 'Tecnologías': 'Skills', 'Proyectos': 'Projects',
+      'Home': 'Inicio', 'About': 'Sobre mí', 'Skills': 'Tecnologías', 'Projects': 'Proyectos',
+    };
+    setActiveTab(translations[activeTab]);
+    setLanguage(language === 'es' ? 'en' : 'es');
+  };
 
   const renderTab = () => {
     switch (activeTab) {
-      case 'Home': return <Home />;
-      case 'About': return <About />;
-      case 'Skills': return <Skills />;
-      case 'Projects': return <Projects />;
-      default: return <Home />;
+      case 'Inicio': case 'Home': return <Home language={language} />;
+      case 'Sobre mí': case 'About': return <About language={language} />;
+      case 'Tecnologías': case 'Skills': return <Skills language={language} />;
+      case 'Proyectos': case 'Projects': return <Projects language={language} />;
+      default: return <Home language={language} />;
     }
   };
 
@@ -33,6 +47,11 @@ const Tabs = () => {
     <div className="tabs-wrapper">
       <div className="tabs-container">
         <nav className="tabs-nav">
+          <div className="brand-lockup">
+            <span className="brand-mark">EC</span>
+            <span className="brand-copy">FULLSTACK · UTN</span>
+          </div>
+
           <button
             className={`hamburger-icon ${isMenuOpen ? 'open' : ''}`}
             onClick={toggleMenu}
@@ -45,7 +64,7 @@ const Tabs = () => {
           </button>
 
           <div className={`side-menu ${isMenuOpen ? 'active' : ''}`}>
-            {['Home', 'About', 'Skills', 'Projects'].map(tab => (
+            {labels.map(tab => (
               <button
                 key={tab}
                 onClick={() => handleTabClick(tab)}
@@ -57,7 +76,7 @@ const Tabs = () => {
           </div>
 
           <div className="tabs-desktop-menu">
-            {['Home', 'About', 'Skills', 'Projects'].map(tab => (
+            {labels.map(tab => (
               <button
                 key={tab}
                 onClick={() => handleTabClick(tab)}
@@ -68,6 +87,16 @@ const Tabs = () => {
             ))}
           </div>
 
+          <button
+            className="language-toggle"
+            onClick={toggleLanguage}
+            aria-label={language === 'es' ? 'Switch to English' : 'Cambiar a español'}
+          >
+            <span className={language === 'es' ? 'selected' : ''}>ES</span>
+            <span>/</span>
+            <span className={language === 'en' ? 'selected' : ''}>EN</span>
+          </button>
+
           {isMenuOpen && <div className="overlay" onClick={toggleMenu}></div>}
         </nav>
 
@@ -75,7 +104,7 @@ const Tabs = () => {
           {renderTab()}
         </div>
 
-        <Footer />
+        <Footer language={language} />
       </div>
     </div>
   );
