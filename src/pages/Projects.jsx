@@ -37,6 +37,13 @@ function Projects({ language = 'es' }) {
   };
 
   const openCaseStudy = (project) => setSelectedProject(project);
+  const selectedCaseStudy = selectedProject?.caseStudy;
+  const caseStudyOverview = selectedCaseStudy && (language === 'en'
+    ? selectedCaseStudy.overviewEn || selectedProject.descriptionEn || selectedCaseStudy.overview
+    : selectedCaseStudy.overview);
+  const caseStudyArchitecture = selectedCaseStudy && (language === 'en'
+    ? selectedCaseStudy.architectureEn || selectedCaseStudy.architecture
+    : selectedCaseStudy.architecture);
 
   return (
     <section className="projects-section matrix-section" id="proyectos">
@@ -59,7 +66,10 @@ function Projects({ language = 'es' }) {
       </div>
 
       <div className="projects-grid">
-        {filteredProjects.map((proj, index) => (
+        {filteredProjects.map((proj, index) => {
+          const projectTitle = language === 'en' ? proj.title : proj.titleEs || proj.title;
+
+          return (
           <div key={index} className="project-card">
             {proj.images && proj.images.length > 1 ? (
               proj.images.length === 2 ? (
@@ -68,7 +78,7 @@ function Projects({ language = 'es' }) {
                     <img
                       key={i}
                       src={img}
-                      alt={`${proj.title} ${i + 1}`}
+                      alt={`${projectTitle} ${i + 1}`}
                       className="project-image"
                       onClick={() => openModal(img)}
                     />
@@ -80,7 +90,7 @@ function Projects({ language = 'es' }) {
                     <img
                       key={i}
                       src={img}
-                      alt={`${proj.title} ${i + 1}`}
+                      alt={`${projectTitle} ${i + 1}`}
                       className="project-image"
                       onClick={() => openModal(img)}
                     />
@@ -90,14 +100,14 @@ function Projects({ language = 'es' }) {
             ) : (
               <img
                 src={proj.images?.[0]}
-                alt={proj.title}
+                alt={projectTitle}
                 className="project-image"
                 onClick={() => openModal(proj.images?.[0])}
               />
             )}
 
-            <h3 className="project-title">{proj.title}</h3>
-            <p className="project-description">{language === 'en' && proj.descriptionEn ? proj.descriptionEn : proj.description}</p>
+            <h3 className="project-title">{projectTitle}</h3>
+            <p className="project-description">{language === 'en' ? proj.descriptionEn || proj.description : proj.description}</p>
 
             {proj.link?.startsWith("http") ? (
               <a
@@ -128,7 +138,8 @@ function Projects({ language = 'es' }) {
               </button>
             )}
           </div>
-        ))}
+          );
+        })}
       </div>
 
       {isModalOpen && (
@@ -143,13 +154,11 @@ function Projects({ language = 'es' }) {
         <div className="modal" onClick={() => setSelectedProject(null)}>
           <div className="modal-content case-study project-case-study" onClick={(event) => event.stopPropagation()}>
             <p className="featured-eyebrow">{language === 'en' ? 'PROJECT NOTES' : 'NOTAS DEL PROYECTO'}</p>
-            <h3 className="case-title">{selectedProject.title}</h3>
-            <p className="case-paragraph">
-              {language === 'en' && selectedProject.descriptionEn ? selectedProject.descriptionEn : selectedProject.caseStudy.overview}
-            </p>
+            <h3 className="case-title">{language === 'en' ? selectedProject.title : selectedProject.titleEs || selectedProject.title}</h3>
+            <p className="case-paragraph">{caseStudyOverview}</p>
             <h4>{language === 'en' ? 'Architecture' : 'Arquitectura'}</h4>
             <ul className="case-list">
-              {selectedProject.caseStudy.architecture.map((item) => <li key={item}>{item}</li>)}
+              {caseStudyArchitecture.map((item) => <li key={item}>{item}</li>)}
             </ul>
             <button className="cta-button" onClick={() => setSelectedProject(null)}>
               {language === 'en' ? 'Close' : 'Cerrar'}
