@@ -27,7 +27,7 @@ html #root {
   width: 100%;
   height: auto;
   min-height: 100%;
-  overflow-x: hidden;
+  overflow-x: clip;
   color: var(--matrix-copy);
   background-color: var(--matrix-black);
 }
