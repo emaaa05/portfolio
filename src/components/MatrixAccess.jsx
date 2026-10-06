@@ -1,16 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 
-const unlockCommand = 'sudo ./portfolio --unlock';
-
 function MatrixAccess({ language = 'es', onLanguageToggle, onUnlock }) {
   const isEnglish = language === 'en';
-  const inputRef = useRef(null);
-  const [command, setCommand] = useState('');
+  const dragStartRef = useRef(null);
+  const skipClickRef = useRef(false);
   const [status, setStatus] = useState('waiting');
-
-  useEffect(() => {
-    inputRef.current?.focus();
-  }, []);
 
   useEffect(() => {
     if (status !== 'unlocking') return undefined;
@@ -19,17 +13,29 @@ function MatrixAccess({ language = 'es', onLanguageToggle, onUnlock }) {
     return () => window.clearTimeout(timeoutId);
   }, [onUnlock, status]);
 
-  const submitCommand = (event) => {
-    event.preventDefault();
-    const normalizedCommand = command.trim().toLowerCase().replace(/\s+/g, ' ');
+  const startDragging = (event) => {
+    dragStartRef.current = event.clientX;
+    skipClickRef.current = false;
+    event.currentTarget.setPointerCapture(event.pointerId);
+  };
 
-    if (normalizedCommand === unlockCommand) {
-      setStatus('unlocking');
+  const finishDragging = (event) => {
+    if (dragStartRef.current === null) return;
+
+    const distance = event.clientX - dragStartRef.current;
+    skipClickRef.current = Math.abs(distance) > 8;
+    dragStartRef.current = null;
+
+    if (distance >= 40) setStatus('unlocking');
+  };
+
+  const activateSwitch = () => {
+    if (skipClickRef.current) {
+      skipClickRef.current = false;
       return;
     }
 
-    setCommand('');
-    setStatus('denied');
+    setStatus('unlocking');
   };
 
   return (
@@ -61,42 +67,41 @@ function MatrixAccess({ language = 'es', onLanguageToggle, onUnlock }) {
           </h2>
           <p className="access-description">
             {isEnglish
-              ? 'Route intercepted. Enter the authorization command to establish a connection.'
-              : 'Ruta interceptada. Escribí el comando de autorización para establecer conexión.'}
+              ? 'The signal is ready. Slide to enter the Matrix.'
+              : 'La señal está lista. Deslizá para ingresar a la Matrix.'}
           </p>
+
+          <div className="access-switch-wrap">
+            <button
+              className={`access-switch ${status === 'unlocking' ? 'is-on' : ''}`}
+              type="button"
+              role="switch"
+              aria-checked={status === 'unlocking'}
+              aria-label={isEnglish ? 'Slide or tap to unlock the portfolio' : 'Deslizá o tocá para desbloquear el portfolio'}
+              onPointerDown={startDragging}
+              onPointerUp={finishDragging}
+              onPointerCancel={() => { dragStartRef.current = null; }}
+              onClick={activateSwitch}
+              disabled={status === 'unlocking'}
+            >
+              <span className="access-switch-state" aria-hidden="true">{status === 'unlocking' ? 'ON' : 'OFF'}</span>
+              <span className="access-switch-thumb" aria-hidden="true">
+                <span>{status === 'unlocking' ? '✓' : '→'}</span>
+              </span>
+            </button>
+            <span className="access-switch-label">
+              {isEnglish ? 'SLIDE OR TAP TO ENTER' : 'DESLIZÁ O TOCÁ PARA ENTRAR'}
+            </span>
+          </div>
 
           <div className="access-log" aria-live="polite" aria-atomic="true">
             <p><span>[SYS]</span> {isEnglish ? 'Secure channel detected.' : 'Canal seguro detectado.'}</p>
             <p><span>[SYS]</span> {isEnglish ? 'Target: EC_DEV / PORTFOLIO' : 'Objetivo: EC_DEV / PORTFOLIO'}</p>
-            {status === 'denied' && (
-              <p className="access-denied" role="alert">[ERR] {isEnglish ? 'ACCESS DENIED // TRY AGAIN' : 'ACCESO DENEGADO // INTENTÁ DE NUEVO'}</p>
-            )}
             {status === 'unlocking' && (
               <p className="access-accepted">[OK] {isEnglish ? 'HANDSHAKE ACCEPTED // DECRYPTING' : 'HANDSHAKE ACEPTADO // DESENCRIPTANDO'}</p>
             )}
           </div>
 
-          <form className="access-form" onSubmit={submitCommand}>
-            <label className="access-prompt" htmlFor="access-command">guest@ec-dev:~$</label>
-            <input
-              ref={inputRef}
-              id="access-command"
-              value={command}
-              onChange={(event) => setCommand(event.target.value)}
-              placeholder={unlockCommand}
-              autoComplete="off"
-              spellCheck="false"
-              aria-label={isEnglish ? 'Authorization command' : 'Comando de autorización'}
-              disabled={status === 'unlocking'}
-            />
-            <button className="access-submit" type="submit" disabled={status === 'unlocking'}>
-              {isEnglish ? 'RUN' : 'EJECUTAR'}
-            </button>
-          </form>
-
-          <p className="access-hint">
-            {isEnglish ? 'Command:' : 'Comando:'} <code>{unlockCommand}</code>
-          </p>
           <button className="access-bypass" type="button" onClick={onUnlock}>
             {isEnglish ? 'Enter directly' : 'Acceso directo'} <span aria-hidden="true">↗</span>
           </button>
