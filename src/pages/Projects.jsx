@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import projects from '../data/projectsData';
-import '../styles/projects.css';
+import '../styles/Projects.css';
 
 const projectOrder = ['TurnoYA', 'College Connect USA', 'BCRA Connect', 'React Native Music Player', 'React Native Weather App', 'Ecommerce'];
 
@@ -39,7 +39,7 @@ function Projects({ language = 'es' }) {
   const openCaseStudy = (project) => setSelectedProject(project);
 
   return (
-    <section className="projects-section">
+    <section className="projects-section matrix-section" id="proyectos">
       <p className="section-kicker">{language === 'en' ? 'LAB' : 'LABORATORIO'}</p>
       <h2 className="projects-title">{language === 'en' ? 'Projects with a story to tell.' : 'Proyectos con algo para contar.'}</h2>
 

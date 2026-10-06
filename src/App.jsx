@@ -1,13 +1,13 @@
-import React from 'react';
 import Tabs from './components/Tabs';
-import '../src/styles/App.css'
+import MatrixRain from './components/MatrixRain';
+import './styles/App.css';
+import './styles/Matrix.css';
 
 function App() {
   return (
     <div className="app-wrapper">
-      <div>
-        <Tabs />
-      </div>
+      <MatrixRain variant="backdrop" />
+      <Tabs />
     </div>
   );
 }

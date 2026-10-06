@@ -1,12 +1,11 @@
-import profile from '../assets/perfil.jpeg';
-import '../styles/about.css';
+import '../styles/About.css';
 
 function About({ language = 'es' }) {
   const isEnglish = language === 'en';
 
   return (
     <>
-      <section className="about-section">
+      <section className="about-section matrix-section" id="perfil">
         <div className="about-left">
           <p className="section-kicker">{isEnglish ? 'BACKGROUND' : 'TRAYECTORIA'}</p>
           <h2 className="about-title">{isEnglish ? 'Learning by building.' : 'Aprender haciendo.'}</h2>
@@ -20,12 +19,9 @@ function About({ language = 'es' }) {
           </p>
         </div>
 
-        <div className="about-right">
-          <img src={profile} alt="Profile" className="about-img" />
-        </div>
       </section>
 
-      <section className="about-grid-section">
+      <section className="about-grid-section matrix-section">
         <div className="about-grid">
           <div className="about-item">
             <h4>{isEnglish ? 'Based in' : 'Base'}</h4>
@@ -46,7 +42,7 @@ function About({ language = 'es' }) {
         </div>
       </section>
 
-      <section className="workflow-section">
+      <section className="workflow-section matrix-section">
         <p className="section-kicker">{isEnglish ? 'WORKFLOW' : 'FORMA DE TRABAJO'}</p>
         <h2 className="about-title">{isEnglish ? 'From the problem to the product.' : 'Del problema al producto.'}</h2>
         <div className="workflow-grid">

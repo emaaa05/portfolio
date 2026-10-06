@@ -1,6 +1,6 @@
 import { DiReact, DiJavascript1, DiFirebase, DiGithubBadge, DiNodejs, DiPython } from 'react-icons/di';
 import { SiExpo, SiExpress, SiPostgresql, SiCplusplus } from 'react-icons/si';
-import '../styles/skills.css';
+import '../styles/Skills.css';
 
 const skills = [
   { name: 'React Native', icon: <DiReact size={50} color="#61DBFB" /> },
@@ -20,7 +20,7 @@ function Skills({ language = 'es' }) {
   const isEnglish = language === 'en';
 
   return (
-    <section className="skills-section">
+    <section className="skills-section matrix-section" id="tecnologias">
       <p className="section-kicker">{isEnglish ? 'TOOLBOX' : 'CAJA DE HERRAMIENTAS'}</p>
       <h2 className="skills-title">{isEnglish ? 'Technologies I use to build.' : 'Tecnologías que uso para construir.'}</h2>
       <p className="skills-description">
