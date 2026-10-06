@@ -1242,7 +1242,7 @@ body {
 
   .access-brand h1,
   .access-status {
-    font-size: .6rem;
+    font-size: .68rem;
   }
 
   .access-switch-wrap {
@@ -1258,7 +1258,7 @@ body {
   }
 
   .brand-copy {
-    font-size: .62rem;
+    font-size: .72rem;
   }
 
   .home-section {
@@ -1270,20 +1270,43 @@ body {
   }
 
   .greeting {
-    font-size: .62rem;
+    font-size: .75rem;
   }
 
   .role {
-    font-size: .92rem;
+    font-size: 1rem;
   }
 
   .hero-copy {
-    font-size: .94rem;
+    font-size: 1rem;
   }
 
   .hero-meta {
     gap: .8rem 1rem;
-    font-size: .56rem;
+    font-size: .7rem;
+  }
+
+  .section-kicker {
+    font-size: .78rem;
+  }
+
+  .about-item h4,
+  .workflow-step h3 {
+    font-size: .85rem;
+  }
+
+  .about-item p,
+  .workflow-step p {
+    font-size: .95rem;
+  }
+
+  .skill-item p {
+    font-size: .85rem;
+  }
+
+  .filter-button,
+  .project-count {
+    font-size: .78rem;
   }
 
   .about-grid,

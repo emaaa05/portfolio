@@ -32,7 +32,7 @@ function About({ language = 'es' }) {
             <p>{isEnglish ? 'Fullstack with backend depth' : 'Fullstack con base backend'}</p>
           </div>
           <div className="about-item">
-            <h4>{isEnglish ? 'Currently learning' : 'Ahora estudio'}</h4>
+            <h4>{isEnglish ? 'Currently studying' : 'Estudiando'}</h4>
             <p>{isEnglish ? 'Architecture, data and systems' : 'Arquitectura, datos y sistemas'}</p>
           </div>
           <div className="about-item">

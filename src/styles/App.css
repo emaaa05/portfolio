@@ -39,7 +39,6 @@ section {
 @media (max-width: 1024px) {
   html, body, #root {
     overflow-x: clip;
-    font-size: 14px;
     padding: 0;
     margin: 0;
   }
@@ -57,7 +56,6 @@ section {
 @media (max-width: 768px) {
   html, body, #root {
     overflow-x: clip;
-    font-size: 14px;
     padding: 0;
     margin: 0;
   }
